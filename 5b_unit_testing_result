@@ -1,0 +1,9 @@
+Command:
+py -3 test_emotion_detection.py
+
+Output:
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
