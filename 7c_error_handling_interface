@@ -1,0 +1,20 @@
+Command (Flask test client simulation):
+@'
+import server
+
+server.emotion_detector = lambda text: {
+    'anger': None,
+    'disgust': None,
+    'fear': None,
+    'joy': None,
+    'sadness': None,
+    'dominant_emotion': None,
+}
+
+client = server.app.test_client()
+response = client.get('/emotionDetector?textToAnalyze=')
+print(response.data.decode())
+'@ | py -3 -
+
+Output:
+Invalid text! Please try again!
