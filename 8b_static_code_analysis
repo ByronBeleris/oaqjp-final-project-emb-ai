@@ -1,6 +1,2 @@
-Command:
-py -3 -m pylint server.py
-
-Output:
 -------------------------------------------------------------------
 Your code has been rated at 10.00/10 (previous run: 7.69/10, +2.31)
