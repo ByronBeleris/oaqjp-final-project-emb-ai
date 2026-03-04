@@ -1,0 +1,16 @@
+Command:
+@'
+import emotion_detection
+
+sample = '{"emotionPredictions":[{"emotion":{"anger":0.01,"disgust":0.02,"fear":0.03,"joy":0.9,"sadness":0.04}}]}'
+emotion_detection.requests.post = lambda *args, **kwargs: type('Resp', (), {'text': sample})()
+
+print(emotion_detection.emotion_detector('I am so happy I am doing this.'))
+'@ | py -3 -
+
+Output:
+{'anger': 0.01, 'disgust': 0.02, 'fear': 0.03, 'joy': 0.9, 'sadness': 0.04, 'dominant_emotion': 'joy'}
+
+Note:
+- Live endpoint test from this environment timed out (ConnectTimeout).
+- The formatting and dominant emotion logic are verified by the deterministic test above.

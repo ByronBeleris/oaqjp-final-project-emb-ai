@@ -1,0 +1,11 @@
+Command:
+py -3 -c "import emotion_detection; print('import ok'); print(emotion_detection.emotion_detector('I love this new technology.'))"
+
+Output:
+import ok
+Traceback (most recent call last):
+requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='sn-watson-emotion.labs.skills.network', port=443): Max retries exceeded with url: /v1/watson.runtime.nlp.v1/NlpService/EmotionPredict (Caused by ConnectTimeoutError(<HTTPSConnection(host='sn-watson-emotion.labs.skills.network', port=443) at 0x...>, 'Connection to sn-watson-emotion.labs.skills.network timed out. (connect timeout=None)'))
+
+Notes:
+- Module import works.
+- Runtime call timed out in this environment due network/connectivity to the Watson endpoint.
