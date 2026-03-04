@@ -1,0 +1,25 @@
+Command 1:
+py -3 -c "from EmotionDetection import emotion_detector; print('package import ok')"
+
+Output 1:
+package import ok
+
+Command 2 (live endpoint):
+py -3 -c "from EmotionDetection import emotion_detector; print(emotion_detector('I hate working long hours.'))"
+
+Output 2:
+requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='sn-watson-emotion.labs.skills.network', port=443): Max retries exceeded with url: /v1/watson.runtime.nlp.v1/NlpService/EmotionPredict (Caused by ConnectTimeoutError(...))
+
+Command 3 (deterministic logic verification):
+@'
+from EmotionDetection import emotion_detector
+import EmotionDetection.emotion_detection as em
+
+sample = '{"emotionPredictions":[{"emotion":{"anger":0.88,"disgust":0.05,"fear":0.04,"joy":0.01,"sadness":0.02}}]}'
+em.requests.post = lambda *args, **kwargs: type('Resp', (), {'text': sample})()
+
+print(emotion_detector('I hate working long hours.'))
+'@ | py -3 -
+
+Output 3:
+{'anger': 0.88, 'disgust': 0.05, 'fear': 0.04, 'joy': 0.01, 'sadness': 0.02, 'dominant_emotion': 'anger'}
